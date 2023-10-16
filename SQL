@@ -1,0 +1,41 @@
+CREATE TABLE Usuarios (
+		usuario_id SERIAL PRIMARY KEY,
+		nombre VARCHAR(255) NOT NULL,
+		correo_electronico VARCHAR(255) NOT NULL UNIQUE,
+		habilidades TEXT[] 
+	);
+	
+CREATE TABLE Trabajos (
+    trabajo_id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    habilidades_requeridas TEXT[],
+    fecha_publicacion DATE
+);
+
+CREATE TABLE Solicitudes (
+    solicitud_id SERIAL PRIMARY KEY,
+    trabajo_id INT REFERENCES Trabajos(trabajo_id),
+    usuario_id INT REFERENCES Usuarios(usuario_id),
+    fecha_solicitud DATE,
+    estado VARCHAR(20)
+    
+);
+
+
+CREATE TABLE Pagos (
+    pago_id SERIAL PRIMARY KEY,
+    solicitud_id INT REFERENCES Solicitudes(solicitud_id),
+    monto DECIMAL(10, 2) NOT NULL,
+    estado VARCHAR(20)
+    
+);
+
+CREATE TABLE Calificaciones (
+    calificacion_id SERIAL PRIMARY KEY,
+    usuario_id INT REFERENCES Usuarios(usuario_id),
+    trabajo_id INT REFERENCES Trabajos(trabajo_id),
+    puntuacion INT,
+    comentario TEXT
+
+);	
