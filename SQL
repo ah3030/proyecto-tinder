@@ -39,3 +39,23 @@ CREATE TABLE Calificaciones (
     comentario TEXT
 
 );	
+
+INSERT INTO Usuarios (nombre, correo_electronico, habilidades) VALUES
+    ('Pedrito Sola', 'pedrito@example.com', ARRAY['hablar en público']),
+    ('Ejemplo Usuario', 'usuario@example.com', ARRAY['diseño gráfico', 'programación']);
+
+INSERT INTO Trabajos (titulo, descripcion, habilidades_requeridas, fecha_publicacion) VALUES
+    ('Comercial de Rappi', 'Descripción del trabajo de Rappi', ARRAY['hablar en público'], '2023-10-15'),
+    ('Trabajo de Diseño', 'Descripción de un trabajo de diseño', ARRAY['diseño gráfico'], '2023-10-16');
+
+INSERT INTO Solicitudes (trabajo_id, usuario_id, fecha_solicitud, estado) VALUES
+    (1, 1, '2023-10-17', 'Pendiente'),
+    (2, 2, '2023-10-18', 'Aceptada');
+	
+INSERT INTO Pagos (solicitud_id, monto, estado) VALUES
+    (1, 150.00, 'Completado'),
+    (2, 100.00, 'Pendiente');
+	
+INSERT INTO Calificaciones (usuario_id, trabajo_id, puntuacion, comentario) VALUES
+    (1, 1, 5, 'Gran trabajo realizado por Pedrito Sola'),
+    (2, 2, 4, 'Buen trabajo de diseño');
